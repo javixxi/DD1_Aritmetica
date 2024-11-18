@@ -1,0 +1,28 @@
+library ieee;                    
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all; 
+
+--entity
+entity sum8bits is             
+port(
+     C_in:  in     std_logic;
+     A:     in     std_logic_vector(7 downto 0);
+	 B:     in     std_logic_vector(7 downto 0);
+	 S:     buffer std_logic_vector(7 downto 0);
+	 C_out: buffer std_logic;
+	 ov:	buffer std_logic
+    );
+end entity; 
+
+--architecture
+architecture rtl of sum8bits is
+	signal S_aux: std_logic_vector (8 downto 0);
+begin
+    S_aux <= ('0' & A) + ('0' &  B) + C_in; --añadimos un bit mas significativo a que la cantidad de bits de la suma tiene que se igual a la cantidad de bit de uno de los sumandos
+	C_out <= S_aux(8);
+	S <= S_aux(7 downto 0);
+	
+	ov <= 	'1' when (A(7) = B(7)) and (A(7) /= S(7)) else
+			'0';
+  
+end rtl;

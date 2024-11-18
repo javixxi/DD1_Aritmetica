@@ -1,0 +1,18 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;	--Lo usaremos para trabajar con calculos +
+
+--entity
+entity sum4bits is
+	port(	A:	in 		std_logic_vector (3 downto 0);
+			B:	in 		std_logic_vector (3 downto 0);
+			S:	buffer 	std_logic_vector (3 downto 0)
+		);
+end entity;
+
+--architecture
+architecture rtl of sum4bits is
+begin
+
+	S <= A + B; --Se ejecuta esta sentencia cuando alguna de las asignaciones de la derecha cambia.
+end rtl;
